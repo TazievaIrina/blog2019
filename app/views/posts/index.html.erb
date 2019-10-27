@@ -1,0 +1,31 @@
+<div class="posts">
+  <div class="posts__header">
+    <p id="notice">
+      <%= notice %>
+    </p>
+    <h1>Блог</h1>
+  </div>
+  <div class="posts__content">
+    <%@posts.each do |post|%>
+      <div class="post">
+        <div class="post__header">
+
+          <div class="post__header-info">
+            <div class="post__title"><%=post.title%></div>
+            <div class="post__created"><%= l(post.created_at, format: :long) %></div>
+
+          </div>
+          <div class="post__show-more"><%= link_to 'Подробнее', post_path(post)%></div>
+        </div>
+
+        <div class="post__content"><%= post.body %></div>
+        <div class="post__login">
+          <%post.user&.login%>
+          </div>
+        </div>
+      <%end%>
+    </div>
+    <div class="posts__footer">
+      <%= link_to 'New Post', new_post_path %>
+    </div>
+  </div>
